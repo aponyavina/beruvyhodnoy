@@ -1,0 +1,14 @@
+.filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  @media (max-width: 1220px) {
+    flex-wrap: wrap;
+  }
+
+  &-type {
+    max-width: 300px;
+  }
+
+}

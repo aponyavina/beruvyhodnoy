@@ -1,0 +1,25 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 20px 0px;
+
+  & > button {
+    padding: 20px;
+    margin-right: 10px;
+    margin-bottom: 40px;
+
+    border: none;
+    border-radius: 50%;
+    box-shadow: 1px 2px 14px 1px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+
+    &:first-child {
+      margin-right: 20px;
+
+      border-radius: 10px;
+      background-color: #dadeea;
+    }
+  }
+}
