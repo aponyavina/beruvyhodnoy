@@ -24,10 +24,6 @@
         <ManufacturerDraft v-if="selected === 'draft'" :manufacturerDrafts="getManufacturerDraft" />
         <!-- Фильтр Производитель Тара -->
         <ManufacturerBottles v-if="selected === 'bottles'" :manufacturerBottles="getManufacturerBottles"/>
-        <!-- Фильтр по стоимости Розлива -->
-        <!-- <PriceDraft v-if="selected === 'draft'" :draftPrice="getPriceDraftArr" /> -->
-        <!-- Фильтр по стоимости Тара -->
-        <!-- <PriceBottles v-if="selected === 'bottles'" :draftBottles="getPriceBottlesArr" /> -->
         <!-- Фильтр Алкоголь Розлив -->
         <AlchoDraft v-if="selected === 'draft'" :alchoDraft="getAlchoDraftArr" />
         <!-- Фильтра Алкоголь Тара -->
@@ -71,8 +67,6 @@ import AlchoDraft from '@/components/AlchoDraft'
 import TableBottles from '@/components/TableBottles'
 import TableDraft from '@/components/TableDraft'
 import BottlingType from '@/components/BottlingType'
-// import PriceDraft from '@/components/PriceDraft'
-// import PriceBottles from '@/components/PriceBottles'
 import TareBottles from '@/components/TareBottles'
 
 export default {
@@ -109,8 +103,6 @@ export default {
     TableBottles,
     TableDraft,
     BottlingType,
-    // PriceDraft,
-    // PriceBottles,
     TareBottles
   },
   computed: {
@@ -206,8 +198,8 @@ export default {
       .then(res => {
         this.$store.dispatch('setDraft', res.data.data.draft)
         this.$store.dispatch('setBottles', res.data.data.bottles)
-        this.$store.dispatch('setManufacturerDraft', unique(this.$store.getters['getDraft'].map(item => item.m)).sort())
-        this.$store.dispatch('setManufacturerBottles', unique(this.$store.getters['getBottles'].map(item => item.m)).sort())
+        this.$store.dispatch('setManufacturerDraft', unique(this.$store.getters['getDraft'].map(item => item.m)).filter(item => item.replace(/(\r\n|\n|\r)/gm, '')).sort()) 
+        this.$store.dispatch('setManufacturerBottles', unique(this.$store.getters['getBottles'].map(item => item.m)).filter(item => item.replace(/(\r\n|\n|\r)/gm, '')).sort())
         this.$store.dispatch('setAlchoDraftArr', unique(this.$store.getters['getDraft'].map(item => item.a)).sort())
         this.$store.dispatch('setAlchoBottlesArr', unique(this.$store.getters['getBottles'].map(item => item.a)).sort())
         this.$store.dispatch('setPriceBottlesArr', unique(this.$store.getters['getBottles'].map(item => item.p)).sort())

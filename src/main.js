@@ -11,6 +11,15 @@ import './assets/scss/style.scss'
 
 Vue.config.productionTip = false
 
+Vue.config.errorHandler = (err, vm, info) => {
+  if (process.env.NODE_ENV !== 'production') {
+    // Show any error but this one
+    if (err.message !== "Cannot read property 'badInput' of undefined") {
+      console.error(err);
+    }
+  }
+};
+
 Vue.use(VueMaterial)
 
 window.axios = axios
